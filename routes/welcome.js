@@ -8,7 +8,7 @@ const Story = require('../models/Story')
 
 router.get('/', async (req, res) => {
     try {
-        const stories = await Story.find({ status: 'public' }).populate('user').sort({ createdAt: 'desc'}).lean().limit(5)        
+        const stories = await Story.find().populate('user').sort({ createdAt: 'desc'}).lean().limit(5)        
         const pstories = await Story.find({ status: 'private' }).populate('user').sort({ createdAt: 'desc'}).lean().limit(5)
         let today = new Date(); //
         today.setHours(0,0,0,0);
