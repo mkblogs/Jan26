@@ -28,7 +28,7 @@ router.post('/', async (req, res) => {
 // @route GET /stories/add
 router.get('/',  async (req, res) => {
     try {
-        const stories = await Story.find({ status: 'public' }).populate('user').sort({ createdAt: 'desc'}).lean()
+        const stories = await Story.find().populate('user').sort({ createdAt: 'desc'}).lean()
         res.render('stories/index',{
             stories}) 
     } catch (err) {
