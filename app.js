@@ -78,7 +78,7 @@ app.use('/auth', require('./routes/auth'))
 app.use('/stories', require('./routes/stories'))
 app.use('/welcome', require('./routes/welcome'))
 
-const PORT = process.env.PORT || 3000
+const PORT = 5000
 
 
 app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`))
