@@ -1,0 +1,122 @@
+<h4>Add a new prayer request</h4>
+<div class="row">
+    <form action="/stories" method="POST" class="col s12" >
+        <div class="row">
+            <div class="input-field">
+                <select id="age" name="age">
+                    <option value="Select your age group" selected>Select your age group</option>
+                    <option value="teen">Children(Less than 19 years)</option>
+                    <option value="youth">Youth(20 to 35 years)</option>
+                    <option value="adult">Adult(36 to 50 years)</option>
+                    <option value="elder">Elder(Above 50 years)</option>
+                </select>
+                <label for="age">Age group</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field">
+                <p>
+                Gender
+                <label>
+                <input class="with-gap" name="gender" type="radio" value="male" />
+                <span>Male</span>
+                </label>
+                <label>
+                <input class="with-gap" name="gender" type="radio" value="female" />
+                <span>Female</span>
+                </label>
+                <label>
+                <input class="with-gap" name="gender" type="radio" value="transgender" />
+                <span>Transgender</span>
+                </label>
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field">
+                <select id="occupation" name="occupation">
+                    <option value="Select your occupation" selected>Select your occupation</option>
+                    <option value="student">Student</option>
+                    <option value="employee">Employee</option>
+                    <option value="ministry">Ministry</option>
+                    <option value="others">Others</option>
+                </select>
+                <label for="occupation">Occupation</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field">
+                <p>
+                Salvation
+                <label>
+                <input class="with-gap" name="salvation" type="radio" id="yes" value="yes" onclick="text(0)" />
+                <span>Yes</span>
+                </label>
+                <label>
+                <input class="with-gap" name="salvation" type="radio" id="no" value="no" onclick="text(1)"/>
+                <span>No</span>
+                </label>
+                </p>
+            </div>
+            <div class="hidden" id="sall">
+                <input type="text" id="salv" name="salv">
+                <label for="salv">Please enter your knowledge/experience of salvation</label>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="input-field">
+                <select id="category" name="category">
+                    <option value="Select the category of request" selected>Select the category of request</option>
+                    <option value="physical">Physical(Hint : financial, Health, everything related to personal)</option>
+                    <option value="mental">Mental(Hint :Stress, rooted(bad/fatal) habits, desiring for rescue)</option>
+                    <option value="spiritual">Spiritual(Hint : Seek/Search GOD, Repentance, Grow in LORD)</option>
+                    <option value="social">Social(Hint : Corruption, injustice, ungodliness, Caste, Class)</option>
+                </select>
+                <label for="category">Category</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field">
+                <input type="text" id="title" name="title" required>
+                <label for="title">Title</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field">
+                <select id="status" name="status">
+                    <option value="public" selected>Public</option>
+                    <option value="private">Private</option>
+                </select>
+                <label for="status">Status</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field">
+                <h5>Tell us your prayer request:</h5>
+                <textarea id="body" name="body" required></textarea>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <input type="submit" value="Save" class="btn">
+            <a href="/stories" class="btn orange">Cancel</a>
+        </div>
+    </form>
+    <script>
+        function text(x) {
+            if (x == 0) document.getElementById("sall").style.display = "block"
+            else document.getElementById("sall").style.display = "none"
+            return;
+        }
+    </script>
+</div>
