@@ -6,10 +6,10 @@ const Story = require('../models/Story')
 // @desc Welcome
 // @route GET /welcome
 
-router.get('/', ensureAuth, async (req, res) => {
+router.get('/', async (req, res) => {
     try {
-        const stories = await Story.find({ status: 'public' }).populate('user').sort({ createdAt: 'desc'}).lean().limit(5)
-        const pstories = await Story.find({ status: 'private', user: req.user.id }).populate('user').sort({ createdAt: 'desc'}).lean().limit(5)
+        const stories = await Story.find({ status: 'public' }).populate('user').sort({ createdAt: 'desc'}).lean().limit(5)        
+        const pstories = await Story.find({ status: 'private' }).populate('user').sort({ createdAt: 'desc'}).lean().limit(5)
         let today = new Date(); //
         today.setHours(0,0,0,0);
         const lstories = await Story.find({ status: 'public', createdAt: { $gte: today}

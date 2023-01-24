@@ -1,18 +1,17 @@
 const express = require('express')
 const router = express.Router()
-const { ensureAuth } = require('../middleware/auth')
 const Story = require('../models/Story')
 
 
 // @desc Show add page
 // @route GET /stories/add
-router.get('/add', ensureAuth, (req, res) => {
+router.get('/add', (req, res) => {
     res.render('stories/add')
 })
 
 // @desc Process add form
 // @route POST /stories
-router.post('/', ensureAuth, async (req, res) => {
+router.post('/', async (req, res) => {
     try {
         req.body.user = req.user.id
         await Story.create(req.body)
@@ -27,7 +26,7 @@ router.post('/', ensureAuth, async (req, res) => {
 
 // @desc Show all stories
 // @route GET /stories/add
-router.get('/', ensureAuth, async (req, res) => {
+router.get('/',  async (req, res) => {
     try {
         const stories = await Story.find({ status: 'public' }).populate('user').sort({ createdAt: 'desc'}).lean()
         res.render('stories/index',{
@@ -41,7 +40,7 @@ router.get('/', ensureAuth, async (req, res) => {
 
 // @desc Show single story
 // @route GET /stories/:id
-router.get('/:id', ensureAuth, async (req, res) => {
+router.get('/:id',  async (req, res) => {
     try {
         let story = await Story.findById(req.params.id)
         .populate('user')
@@ -62,7 +61,7 @@ router.get('/:id', ensureAuth, async (req, res) => {
 
 // @desc Show edit page
 // @route GET /stories/edit/:id
-router.get('/edit/:id', ensureAuth, async (req, res) => {
+router.get('/edit/:id',  async (req, res) => {
     try {
         const story = await Story.findOne({
             _id: req.params.id
@@ -86,7 +85,7 @@ router.get('/edit/:id', ensureAuth, async (req, res) => {
 
 // @desc Update story
 // @route PUT /stories/:id
-router.put('/:id', ensureAuth, async (req, res) => {
+router.put('/:id',  async (req, res) => {
     try {
         let story = await Story.findById(req.params.id).lean()
 
@@ -143,7 +142,7 @@ router.put('/:id/response', async (req, res) => {
 
 // @desc Delete story
 // @route DELETE /stories/:id
-router.delete('/:id', ensureAuth, async (req, res) => {
+router.delete('/:id',  async (req, res) => {
     try {
         await Story.remove({ _id: req.params.id})
         res.redirect('/welcome')
@@ -155,7 +154,7 @@ router.delete('/:id', ensureAuth, async (req, res) => {
 
 // @desc User stories 
 // @route GET /stories/user/:userId
-router.get('/user/:userId', ensureAuth, async (req, res) => {
+router.get('/user/:userId',  async (req, res) => {
     try {
         const stories = await Story.find({
             user: req.params.userId,
